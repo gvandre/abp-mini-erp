@@ -5,6 +5,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
+using SomeCompany.Erp.Clientes;
 
 namespace SomeCompany.Erp.EntityFrameworkCore
 {
@@ -21,6 +22,7 @@ namespace SomeCompany.Erp.EntityFrameworkCore
     public class ErpDbContext : AbpDbContext<ErpDbContext>
     {
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Cliente> Clientes { get; set; } // Agregar nueva entidad aqui
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside ErpDbContextModelCreatingExtensions.ConfigureErp
