@@ -1,0 +1,13 @@
+{
+  "culture": "es",
+  "texts": {
+    "Menu:Home": "Inicio",
+    "Welcome": "Bienvenido!",
+    "LongWelcomeMessage": "Bienvenido a la aplicación. Proyecto base Inteliventas ERP.",
+    "Clients": "Clientes",
+    "NewClient": "Nuevo Cliente",
+    "Name": "Nombre",
+    "Delete": "Eliminar",
+    "Edit": "Editar"
+  }
+}

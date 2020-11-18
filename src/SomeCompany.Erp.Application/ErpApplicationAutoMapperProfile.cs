@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SomeCompany.Erp.Clientes;
+using SomeCompany.Erp.Productos;
 
 namespace SomeCompany.Erp
 {
@@ -13,6 +14,10 @@ namespace SomeCompany.Erp
             CreateMap<Cliente, ClienteDto>();
 
             CreateMap<CreateUpdateClienteDto, Cliente>();
+
+            CreateMap<Producto, ProductoDto>();
+
+            CreateMap<CreateUpdateProductoDto, Producto>();
         }
     }
 }

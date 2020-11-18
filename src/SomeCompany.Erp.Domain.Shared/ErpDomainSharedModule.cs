@@ -43,7 +43,7 @@ namespace SomeCompany.Erp
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<ErpResource>("en")
+                    .Add<ErpResource>("es")
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/Erp");
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SomeCompany.Erp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace SomeCompany.Erp.Migrations
 {
     [DbContext(typeof(ErpMigrationsDbContext))]
-    partial class ErpMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201117221715_Created_Entidad_Productos_columnCodProduct")]
+    partial class Created_Entidad_Productos_columnCodProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

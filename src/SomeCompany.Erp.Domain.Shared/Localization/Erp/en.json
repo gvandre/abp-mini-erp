@@ -3,6 +3,13 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+    "Clients": "Clients",
+    "NewClient": "New Client",
+    "Name": "Name",
+    "Delete": "Delete",
+    "Edit": "Edit",
+    "Erp:00001": "Client not data: ruc, dni or ce are empty",
+    "Erp:00002": "There is already an client with {typeDoc}:{doc}"
   }
 }

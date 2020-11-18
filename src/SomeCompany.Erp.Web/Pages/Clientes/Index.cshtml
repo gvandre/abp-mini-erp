@@ -1,0 +1,28 @@
+﻿@page
+@using SomeCompany.Erp.Localization
+@using SomeCompany.Erp.Web.Pages.Clientes
+@using Microsoft.Extensions.Localization
+
+@model IndexModel
+@inject IStringLocalizer<ErpResource> L
+@section scripts
+{
+    <abp-script src="/Pages/Clientes/Index.js" />
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+               <h2>@L["Clients"]</h2>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NuevoCliente" text="@L["NewClient"].Value" button-type="Primary"></abp-button>
+            </abp-column>
+        </abp-row>
+        
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ClientesTabla"></abp-table>
+    </abp-card-body>
+</abp-card>

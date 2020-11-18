@@ -1,0 +1,30 @@
+﻿@page
+@using SomeCompany.Erp.Web.Pages.Productos
+@using SomeCompany.Erp.Localization
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<ErpResource> L
+@section scripts
+{
+    <abp-script src="/Pages/Productos/Index.js" />
+}
+
+@model IndexModel
+
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size="_6">
+                <h2>@L["Products"]</h2>
+            </abp-column>
+            <abp-column size="_6" class="text-right">
+                <abp-button id="NuevoProducto" text="@L["NewProduct"].Value" button-type="Primary"></abp-button>
+            </abp-column>
+        </abp-row>
+
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ProductosTabla"></abp-table>
+    </abp-card-body>
+</abp-card>  

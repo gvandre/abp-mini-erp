@@ -29,6 +29,20 @@ namespace SomeCompany.Erp.Web.Menus
             var l = context.GetLocalizer<ErpResource>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem(ErpMenus.Home, l["Menu:Home"], "~/"));
+
+            context.Menu.AddItem(new ApplicationMenuItem(
+                    "Maestros",
+                    "Maestros"
+                    ).AddItem(new ApplicationMenuItem(
+                        "Clientes",
+                        "Clientes",
+                        url: "Clientes"
+                    )).AddItem(new ApplicationMenuItem(
+                        "Productos",
+                        "Productos",
+                        url: "Productos"
+                    ))
+            );
         }
     }
 }

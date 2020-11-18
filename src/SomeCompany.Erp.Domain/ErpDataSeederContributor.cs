@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SomeCompany.Erp.Clientes;
+using SomeCompany.Erp.Productos;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
@@ -11,9 +12,12 @@ namespace SomeCompany.Erp
     {
         private readonly IRepository<Cliente, Guid> _clienteRepository;
 
-        public ErpDataSeederContributor(IRepository<Cliente, Guid> clienteRepository)
+        private readonly IRepository<Producto, Guid> _productoRepository;
+
+        public ErpDataSeederContributor(IRepository<Cliente, Guid> clienteRepository, IRepository<Producto, Guid> productoRepository)
         {
             _clienteRepository = clienteRepository;
+            _productoRepository = productoRepository;
         }
 
         public async Task SeedAsync(DataSeedContext context)
@@ -38,6 +42,25 @@ namespace SomeCompany.Erp
                         Ruc = "A0987654321",
                         Dni = "87654321",
                         Ce = "BA0987654321"
+                    },
+                    autoSave: true
+                );
+            }
+
+            if (await _productoRepository.GetCountAsync() <= 0)
+            {
+                await _productoRepository.InsertAsync(
+                    new Producto
+                    {
+                        Nombre = "Producto 1",
+                    },
+                    autoSave: true
+                );
+
+                await _productoRepository.InsertAsync(
+                    new Producto
+                    {
+                        Nombre = "Producto 2",
                     },
                     autoSave: true
                 );
