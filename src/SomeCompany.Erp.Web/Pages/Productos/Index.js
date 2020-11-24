@@ -1,9 +1,9 @@
 ﻿$(function () {
     var l = abp.localization.getResource('Erp');
 
-    /*var createModal = new abp.ModalManager(abp.appPath + "Clientes/CreateModal");
+    var createModal = new abp.ModalManager(abp.appPath + "Productos/CreateModal");
 
-    var editModal = new abp.ModalManager(abp.appPath + "Clientes/EditModal");*/
+    var editModal = new abp.ModalManager(abp.appPath + "Productos/EditModal");
 
     var dataTable = $('#ProductosTabla').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -21,7 +21,7 @@
                             {
                                 text: l("Edit"),
                                 action: function (data) {
-                                    // editModal.open({ id: data.record.id })
+                                    editModal.open({ id: data.record.id })
                                 }
                             },
                             {
@@ -49,6 +49,13 @@
                     data: "codigoProducto"
                 },
                 {
+                    title: l("Enabled"),
+                    data: "isDeleted",
+                    render: function (data) {
+                        return data ? "Deshabilitado" : "Habilidado"
+                    }
+                },
+                {
                     title: "Creación",
                     data: "creationTime",
                     render: function (data) {
@@ -61,7 +68,7 @@
         })
     );
 
-    /*createModal.onResult(function () {
+    createModal.onResult(function () {
         dataTable.ajax.reload();
     });
 
@@ -69,9 +76,9 @@
         dataTable.ajax.reload();
     });
 
-    $("#NuevoCliente").click(function (e) {
+    $("#NuevoProducto").click(function (e) {
         e.preventDefault();
 
         createModal.open();
-    });*/
+    });
 });

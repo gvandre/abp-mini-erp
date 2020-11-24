@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Data;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
-using Volo.Abp.Domain.Entities;
 
 namespace SomeCompany.Erp.Productos
 {
@@ -12,17 +14,47 @@ namespace SomeCompany.Erp.Productos
             ProductoDto, //Used to show clientes
             Guid, //Primary key of the Cliente entity
             PagedAndSortedResultRequestDto, //Used for paging/sorting
-            CreateUpdateProductoDto>, IProductoAppService
+            CreateUpdateProductoDto>, IProductoAppService, ITransientDependency
     {
-        public ProductoAppService (IRepository<Producto, Guid> repository) : base(repository)
+        private readonly IDataFilter<ISoftDelete> _softDeleteFilter;
+        public ProductoAppService (IRepository<Producto, Guid> repository,
+            IDataFilter<ISoftDelete> softDeleteFilter) : base(repository)
         {
+            _softDeleteFilter = softDeleteFilter;
         }
 
-        public override async Task<PagedResultDto<ProductoDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        public async override Task<PagedResultDto<ProductoDto>> GetListAsync(PagedAndSortedResultRequestDto input)
         {
-            // await CheckGetPolicyAsync();
+            using (_softDeleteFilter.Disable())
+            {
+                return await base.GetListAsync(input);
+            }
+        }
+        public async override Task<ProductoDto> GetAsync(Guid id)
+        {
+            using (_softDeleteFilter.Disable())
+            {
+                return await base.GetAsync(id);
+            }
+        }
+        public async override Task<ProductoDto> UpdateAsync(Guid id, CreateUpdateProductoDto input)
+        {
+            using (_softDeleteFilter.Disable())
+            {
+                return await base.UpdateAsync(id, input);
+            }
+        }
 
-            return null;
+        public async override Task DeleteAsync(Guid id)
+        {
+            using (_softDeleteFilter.Disable())
+            {
+                var producto = await Repository.GetAsync(id);
+
+                producto.IsDeleted = !producto.IsDeleted;
+
+                await Repository.UpdateAsync(producto);
+            }
         }
     }
 }

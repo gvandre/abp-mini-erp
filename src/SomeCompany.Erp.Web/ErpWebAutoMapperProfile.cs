@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SomeCompany.Erp.Clientes;
+using SomeCompany.Erp.Productos;
 
 namespace SomeCompany.Erp.Web
 {
@@ -9,6 +10,8 @@ namespace SomeCompany.Erp.Web
         {
             //Define your AutoMapper configuration here for the Web project.
             CreateMap<ClienteDto, CreateUpdateClienteDto>();
+
+            CreateMap<ProductoDto, CreateUpdateProductoDto>();
         }
     }
 }
